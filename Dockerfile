@@ -27,8 +27,6 @@ RUN npm i
 # Copy local code to the container image.
 COPY . ./
 
-# Seed the database
-RUN npm run seed
 
 # Run the web service on container startup.
 ENTRYPOINT [ "node", "index.js" ]
