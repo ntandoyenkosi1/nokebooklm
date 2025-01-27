@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This app is a more customisable version of NotebookLM written entirely JavaScript">
+    <link rel="shortcut icon" href="assets/images/icon.svg"image/x-icon">
+    <title>NokebookLM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div>
+        <div class="header">
+            <div>
+                <div>
+                    <img width="50" src="assets/images/icon.svg" alt="logo">
+                    <input type="text" id="title" value="My Project">
+                </div>
+                <div>
+                    <div><button>Share</button></div>
+                    <div><button>Settings</button></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="container">
+            <div class="column">
+                <div class="left">
+                    <h3>Sources</h3>
+                    <div>
+                        <img alt="icon" src="assets/images/window-sidebar.svg">
+                    </div>
+                </div>
+                <button title="Add new source" id="add-source"> <img alt="icon" src="assets/images/plus.svg">Add source</button>
+                <div>
+                    <ul id="sources">
+                        <li>Source 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column">
+                <div>
+                    <h3>Chat</h3>
+                </div>
+                <h3 id="perfect-title">Perfect title</h3>
+                <b><i>
+                        <div id="source-number">1 Source(s)</div>
+                    </i></b>
+                <div id="summary">No summary yet</div>
+
+                <div>
+                    <a href="" id="advanced-options">Show advanced options<img alt="icon" src="assets/images/caret-down.svg"></a>
+                </div>
+                <div class="voice-column">
+                    <div class="voices">
+                        <h3>Host 1</h3>
+                        <input class="grey-input" value="Liam" type="text" id="speaker1-name">
+                        <select class="grey-select" id="speaker1-voice">
+                            <option value="en-GB-News-L">en-GB-News-L</option>
+                            <option value="en-US-Journey-O">en-US-Journey-O</option>
+                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
+                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
+                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
+                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
+                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
+                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
+                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
+                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
+                            <option value="en-US-Standard-B">en-US-Standard-B</option>
+                            <option value="en-US-Standard-C">en-US-Standard-C</option>
+                            <option value="en-US-Standard-D">en-US-Standard-D</option>
+                            <option value="en-US-Standard-E">en-US-Standard-E</option>
+                            <option value="en-US-Standard-F">en-US-Standard-F</option>
+                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
+                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
+                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
+                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
+                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
+                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
+                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
+                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
+                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
+                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
+                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
+                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
+                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
+                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
+                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
+                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                        </select>
+                    </div>
+                    <div class="voices">
+                        <h3>Host 2</h3>
+                        <input type="text" class="grey-input" value="Ethan" id="speaker2-name">
+                        <select class="grey-select" id="speaker2-voice">
+                            <option value="en-GB-Journey-D">en-GB-Journey-D</option>
+                            <option value="en-US-Journey-O">en-US-Journey-O</option>
+                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
+                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
+                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
+                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
+                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
+                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
+                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
+                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
+                            <option value="en-US-Standard-B">en-US-Standard-B</option>
+                            <option value="en-US-Standard-C">en-US-Standard-C</option>
+                            <option value="en-US-Standard-D">en-US-Standard-D</option>
+                            <option value="en-US-Standard-E">en-US-Standard-E</option>
+                            <option value="en-US-Standard-F">en-US-Standard-F</option>
+                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
+                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
+                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
+                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
+                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
+                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
+                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
+                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
+                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
+                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
+                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
+                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
+                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
+                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
+                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
+                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                        </select>
+                    </div>
+                    <div class="voices">
+                        <h3>Expert 1</h3>
+                        <input class="grey-input" value="Everly" type="text" id="speaker3-name">
+                        <select class="grey-select" id="speaker3-voice">
+
+                            <option value="en-US-Journey-O">en-US-Journey-O</option>
+                            <option value="en-GB-Journey-D">en-GB-Journey-D</option>
+                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
+                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
+                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
+                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
+                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
+                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
+                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
+                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
+                            <option value="en-US-Standard-B">en-US-Standard-B</option>
+                            <option value="en-US-Standard-C">en-US-Standard-C</option>
+                            <option value="en-US-Standard-D">en-US-Standard-D</option>
+                            <option value="en-US-Standard-E">en-US-Standard-E</option>
+                            <option value="en-US-Standard-F">en-US-Standard-F</option>
+                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
+                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
+                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
+                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
+                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
+                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
+                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
+                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
+                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
+                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
+                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
+                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
+                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
+                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
+                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
+                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <!-- <button disabled><img style="color: yellow;" src="assets/images/journal-text.svg"> Add note</button> -->
+                    <button title="Generate podcast" id="generate-btn"><img style="color: yellow;" alt="Star logo" src="assets/images/stars.svg"> Generate audio
+                        podcast</button>
+                    <!-- <button disabled><img style="color: yellow;" src="assets/images/mortarboard-fill.svg"> Briefing
+                        doc</button> -->
+                </div>
+                <!-- // 1st, 2nd, 3rd, 4th, -->
+            </div>
+            <div class="column">
+
+                <div class="center">
+                    <div>
+                        <h3>Studio</h3>
+                        <span><img alt="icon" src="assets/images/window-sidebar.svg"></span>
+                    </div>
+                    <div>
+                        <h3>Audio Overview</h3><span><img alt="icon" title="Audio overview"
+                                src="assets/images/info-circle.svg"></span>
+                    </div>
+
+                </div>
+                <div class="audio-player">
+                    Play audio
+                    <audio controls></audio>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div>
+            <div>
+                <img alt="icon" src="assets/images/icon.svg" alt="">
+                <h3>NotebookLM</h3>
+            </div>
+        </div>
+        <div>
+            <h2>Add sources</h2>
+        </div>
+        <div>
+            <h4>Sources let NotebookLM base its responses on the information that matters most to you.
+                (Examples: marketing plans, course reading, research notes, meeting transcripts, sales documents, etc.)
+            </h4>
+        </div>
+        <div class="sources">
+            <img alt="icon" src="assets/images/upload.svg">
+            <h3>
+                Upload sources</h3>
+            Drag & drop or <input id="file-input" accept=".pdf,.txt,.md" type="file"> file to upload
+            <p>Supported file types: PDF, .txt, Markdown, Audio (e.g. mp3)</p>
+        </div>
+        <div class="links">
+            <div>
+                <p><img alt="icon" src="assets/images/link.svg">Link</p>
+                <button id="youtube-text"><img alt="icon" src="assets/images/youtube.svg">YouTube</button>
+            </div>
+            <div>
+                <p>Pasted Text</p>
+                <button id="pasted-text"><img  src="assets/images/clipboard.svg" alt="icon" srcset="">Copied Text</button>
+            </div>
+        </div>
+        <div><button class="x">Close</button></div>
+    </div>
+    <div id="paste-text-modal">
+        <h2>Paste Text Below</h2>
+        <textarea id="youtubeInput" placeholder="Enter YouTube URL..."></textarea>
+        <div id="validationStatus"></div>
+        <button>Done</button>
+    </div>
+    <div id="youtube-modal">
+        <h2>Enter YouTube link below</h2>
+        <textarea placeholder="Enter YouTube Link here"></textarea>
+        <button>Done</button>
+    </div>
+    <div class="simple-loader" id="loader"></div>
+    <div class="error-container" id="errorContainer">
+        <div class="error-content">
+            <span class="error-message">⚠️ Error: Something went wrong!</span>
+            <div class="countdown-bar"></div>
+            <span class="countdown-text" id="countdownText">5</span>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+    <script type="module" src="assets/js/index.js"></script>
+</body>
+
+</html>
