@@ -274,6 +274,11 @@ document.querySelector("#paste-text-modal button").addEventListener("click", () 
     document.querySelector("#paste-text-modal").style.display = "none"
   }
   else if (textType == "youtube" && text) {
+    if(window.location.hostname == "localhost" || "127.0.0.1"){
+      showError("This functionality is currently disabled in production. Reloading soon")
+      //setTimeout(()=>window.location.reload(),3000)
+      return window.location.reload()
+    }
     if(!/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i.test(text)){
       document.querySelector("#paste-text-modal").style.display = "none"
       return showError("Invalid YouTube URL. Try again!")
