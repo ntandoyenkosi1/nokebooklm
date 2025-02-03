@@ -460,7 +460,6 @@ h4{
 
     /* Modal adjustments */
     #paste-text-modal {
-        height: 70vh;
         padding: 10px;
     }
 
@@ -513,6 +512,17 @@ h4{
 
 /* Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
+    #paste-text-modal {
+        height: 97vh;
+        padding: 10px;
+        max-width: 95vw;
+        left: 0vw;
+   
+    }
+    .links button {
+        width: 35vw;
+        height: 8vh;
+    }
     .column {
     
         padding: 10px;

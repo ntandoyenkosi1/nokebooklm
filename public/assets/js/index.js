@@ -5,6 +5,7 @@ document.querySelector("#summary").innerText = localStorage.getItem("summary") =
 
 document.querySelector("#perfect-title").innerText = localStorage.getItem("perfect-title") ? "No title yet" : localStorage.getItem("perfect-title") || "No title yet"
 document.querySelector("#title").value = title
+localStorage.setItem("title", title)
 document.querySelector("#title").addEventListener("input", (e) => {
   title = e.target.value
   localStorage.setItem("title", title)
@@ -255,11 +256,7 @@ document.querySelector("#pasted-text").addEventListener("click", () => {
   document.querySelector("textarea").maxLength = "10000000"
   document.querySelector("textarea").removeEventListener("input", validateYouTubeUrl)
   document.querySelector("textarea").removeEventListener("paste", validateYouTubeUrl)
-  document.querySelector("textarea").addEventListener("paste", () => console.log("A text was just pasted"))
   validationStatus.innerText = ''
-  var old_element = document.getElementById("textarea");
-  var new_element = old_element.cloneNode(true);
-  old_element.parentNode.replaceChild(new_element, old_element);
   closeModal()
   document.body.style.background = "rgba(0, 0, 0, .7)";
 })

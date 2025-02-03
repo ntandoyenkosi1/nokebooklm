@@ -2,7 +2,7 @@ import { YoutubeTranscript } from 'youtube-transcript';
 import { generateSpeechPayload, modelTemplate } from "../utilities/template.js";
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { ChatOpenAI } from "@langchain/openai";
-//import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+//import { ChatGoogleGenerativeAI } from '@langchain/google-genai'; // Must be uncommented for Gemini to work
 import { fileURLToPath } from 'url';
 import fs from "fs";
 import path, {dirname} from "path"
@@ -25,7 +25,6 @@ export const generate=async(req, res)=> {
        * ChatGPT 4o mini follows instructions better compared to other models at the time of development
        */
       const model = new ChatOpenAI({ model: "gpt-4o-mini" });
-      // Create SystemMessage and HumanMessage with the correct prompt
       const messages = [
         new SystemMessage(promptTemplate),
         new HumanMessage(JSON.stringify(textInput))
@@ -34,7 +33,7 @@ export const generate=async(req, res)=> {
       // Invoke the model
       let result = await model.invoke(messages); 
       result=result.content.replace("```json\n", "").replace("\n```","").replace(/\\"/g, '"')
-      result = JSON.parse(result); // Might not work with Gemini 1.5 pro as it returns markdown format
+      result = JSON.parse(result); // Gemini 1.5 pro works but returns short audio length
       let final = result.podcast
   
       const promises = final.map((speech) => {
@@ -50,11 +49,11 @@ export const generate=async(req, res)=> {
           })
           Promise.all(files)
             .then(() => {
-              //const fileName = [null, undefined, 0, ""].reduce((a, b) => a + Math.ceil(Math.random() * 1000), "0x")
               const outputFile = path.join(__dirname, `temp.mp3`);
               const mergedAudio = fs.readFileSync(outputFile);
               const base64Audio = mergedAudio.toString('base64');
               fs.unlinkSync(outputFile)
+              console.info("Podcast generated successfully!")
               res.json({ audioContent: base64Audio, summary: result.summary, longTitle: result.longTitle });
             })
             .catch((error) => console.error("Error creating a file", error))
@@ -85,5 +84,3 @@ export const generate=async(req, res)=> {
       res.status(500).json({ error: 'Transcription failed' });
     }
   }
-  
-  //app.post('/transcribe', );
