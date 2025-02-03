@@ -4,7 +4,7 @@ NotbookLM is a customizable podcast generator inspired by NotebookLM, allowing y
 
 ## Demo
 
-
+![](./demo/download.mp3)
 
 ## Key Features
 
