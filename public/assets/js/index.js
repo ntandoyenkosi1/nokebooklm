@@ -1,18 +1,22 @@
-//import pdfjsDist from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/+esm'
 document.getElementById('file-input').addEventListener('change', handleFileSelect);
 let sources = JSON.parse(localStorage.getItem("sources")) || []
-const title = localStorage.getItem("title")=="undefined"? "Tech Talk": localStorage.getItem("title") || "Tech Talk"
-document.querySelector("#summary").innerText =localStorage.getItem("summary") =="undefined"?"No summary yet" : localStorage.getItem("summary") || "No summary yet"
+let title = localStorage.getItem("title") == "undefined" ? "Tech Talk" : localStorage.getItem("title") || "Tech Talk"
+document.querySelector("#summary").innerText = localStorage.getItem("summary") == "undefined" ? "No summary yet" : localStorage.getItem("summary") || "No summary yet"
 
-document.querySelector("#perfect-title").innerText = localStorage.getItem("perfect-title")? "No title yet" : localStorage.getItem("perfect-title") || "No title yet"
+document.querySelector("#perfect-title").innerText = localStorage.getItem("perfect-title") ? "No title yet" : localStorage.getItem("perfect-title") || "No title yet"
 document.querySelector("#title").value = title
+document.querySelector("#title").addEventListener("input", (e) => {
+  title = e.target.value
+  localStorage.setItem("title", title)
+})
+
 document.querySelector("#title").addEventListener("change", function () {
   localStorage.setItem("title", document.querySelector("#title").value)
 })
 function handleFileSelect(event) {
   const file = event.target.files[0];
 
-  if (file && file.type=="application/pdf") {
+  if (file && file.type == "application/pdf") {
     const reader = new FileReader();
 
     reader.onload = function (e) {
@@ -61,37 +65,37 @@ function handleFileSelect(event) {
 
     reader.readAsArrayBuffer(file);
   }
-  else if(file && file.type=="text/plain"){
+  else if (file && file.type == "text/plain") {
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
         const textData = e.target.result;
         sources.push({ text: textData, type: "text" })
-          localStorage.setItem("sources", JSON.stringify(sources))
-          closeModal();
-          renderSources()
+        localStorage.setItem("sources", JSON.stringify(sources))
+        closeModal();
+        renderSources()
       };
-  
+
       reader.readAsText(file);
     }
   }
-  else if(file && file.type=="" && /.+/i.test(file.name)){
+  else if (file && file.type == "" && /.+/i.test(file.name)) {
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
         let textData = e.target.result;
-        textData=textData.replace(/([*_]{1,2})(.*?)(\1)/g, '$2')
-        .replace(/^#+\s*(.*)/gm, '$1')
-        .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') 
-        .replace(/!\[([^\]]+)\]\([^\)]+\)/g, '')
-        .replace(/\n/g, ' ')                  
-        .trim();
+        textData = textData.replace(/([*_]{1,2})(.*?)(\1)/g, '$2')
+          .replace(/^#+\s*(.*)/gm, '$1')
+          .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+          .replace(/!\[([^\]]+)\]\([^\)]+\)/g, '')
+          .replace(/\n/g, ' ')
+          .trim();
         sources.push({ text: textData, type: "markdown" })
-          localStorage.setItem("sources", JSON.stringify(sources))
-          closeModal();
-          renderSources()
+        localStorage.setItem("sources", JSON.stringify(sources))
+        closeModal();
+        renderSources()
       };
-  
+
       reader.readAsText(file);
     }
   }
@@ -127,9 +131,9 @@ function renderSources() {
     let el = document.createElement("li")
     let container = document.createElement("div")
     let icon = document.createElement("img")
-    
+
     const trash = document.createElement("img")
-    trash.setAttribute("title","Remove source")
+    trash.setAttribute("title", "Remove source")
     trash.src = "assets/images/trash3.svg"
     if (x?.type == "pdf") {
       icon.setAttribute("title", "Pdf file")
@@ -143,14 +147,14 @@ function renderSources() {
       icon.setAttribute("title", "YouTube video")
       icon.src = "assets/images/youtube.svg"
     }
-    else if(x?.type=="markdown"){
+    else if (x?.type == "markdown") {
       icon.setAttribute("title", "Markdown file")
       icon.src = "assets/images/markdown.svg"
     }
     container.appendChild(icon)
     const text = document.createElement("span")
     text.innerText = `Source ${i + 1}`
-    text.title=`Source ${i + 1}`
+    text.title = `Source ${i + 1}`
     trash.style.cursor = "pointer"
     trash.addEventListener("click", () => {
       sources = sources.filter(y => y.text != x.text)
@@ -167,6 +171,9 @@ function renderSources() {
 }
 renderSources()
 document.querySelector("#generate-btn").addEventListener("click", function () {
+  if (sources.length == 0) {
+    return showError("Please add sources to begin!")
+  }
   showLoader()
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -183,24 +190,24 @@ document.querySelector("#generate-btn").addEventListener("click", function () {
     redirect: "follow"
   };
 
-  fetch("/genai", requestOptions)
+  fetch("/generate", requestOptions)
     .then((response) => response.json())
     .then((result) => {
-      if(result.summary && result.longTitle && result.audioContent){
+      if (result.summary && result.longTitle && result.audioContent) {
         localStorage.setItem("audio", result.audioContent)
         localStorage.setItem("summary", result.summary)
         localStorage.setItem("perfect-title", result.longTitle)
         document.querySelector("#summary").innerText = result.summary
         document.querySelector("#perfect-title").innerText = result.longTitle
-        const audioEl=document.createElement("audio")
-        audioEl.setAttribute("controls","")
-        
+        const audioEl = document.createElement("audio")
+        audioEl.setAttribute("controls", "")
+
         audioEl.src = `data:audio/mp3;base64,${result.audioContent}`;
-        document.querySelector(".audio-player").innerText=""
+        document.querySelector(".audio-player").innerText = ""
         document.querySelector(".audio-player").appendChild(audioEl)
-            hideLoader()
+        hideLoader()
       }
-      else{
+      else {
         showError("An error occured while generating your audio from the server.")
         hideLoader()
         // error
@@ -215,7 +222,7 @@ document.querySelector("#generate-btn").addEventListener("click", function () {
 
 function loadAudio() {
   const audio = localStorage.getItem("audio")
-  audio?document.querySelector('audio').src = `data:audio/mp3;base64,${audio}`: document.querySelector(".audio-player").innerText="Generated audio overview will show here";
+  audio ? document.querySelector('audio').src = `data:audio/mp3;base64,${audio}` : document.querySelector(".audio-player").innerText = "Generated audio overview will show here";
 }
 loadAudio()
 function loadVoiceOptions(e) {
@@ -234,14 +241,25 @@ function getSelections() {
   const name1 = document.querySelector("#speaker1-name")
   const name2 = document.querySelector("#speaker2-name")
   const name3 = document.querySelector("#speaker3-name")
-  return { voice1: voice1.value, voice2: voice2.value, voice3: voice3.value, name1: name1.value, name2: name2.value, name3: name3.value, title }
+  title = localStorage.getItem("title")
+  return { voice1: voice1.value, voice2: voice2.value, voice3: voice3.value, name1: name1.value, name2: name2.value, name3: name3.value, title: title }
 }
 
 document.querySelector("#pasted-text").addEventListener("click", () => {
   // activate the pasting modal
-
+  document.querySelector("textarea").value = ""
+  document.querySelector("#paste-text-modal h2").innerText = ""
+  document.querySelector("textarea").placeholder = "Paste text to include in the discussion"
   document.querySelector("#paste-text-modal").style.display = "flex"
   document.querySelector("#paste-text-modal button").setAttribute("text-type", "text")
+  document.querySelector("textarea").maxLength = "10000000"
+  document.querySelector("textarea").removeEventListener("input", validateYouTubeUrl)
+  document.querySelector("textarea").removeEventListener("paste", validateYouTubeUrl)
+  document.querySelector("textarea").addEventListener("paste", () => console.log("A text was just pasted"))
+  validationStatus.innerText = ''
+  var old_element = document.getElementById("textarea");
+  var new_element = old_element.cloneNode(true);
+  old_element.parentNode.replaceChild(new_element, old_element);
   closeModal()
   document.body.style.background = "rgba(0, 0, 0, .7)";
 })
@@ -250,20 +268,16 @@ document.querySelector("#youtube-text").addEventListener("click", () => {
   document.querySelector("#paste-text-modal h2").innerText = "Paste YouTube url below"
   document.querySelector("#paste-text-modal button").setAttribute("text-type", "youtube")
   document.querySelector("textarea").placeholder = "Paste YouTube URL here"
+  document.querySelector("textarea").value = ""
   document.querySelector("textarea").maxLength = "100"
   closeModal()
   const youtubeInput = document.getElementById('youtubeInput');
   document.body.style.background = "rgba(0, 0, 0, .7)";
   youtubeInput.addEventListener('input', validateYouTubeUrl);
-youtubeInput.addEventListener('paste', function(e) {
-    setTimeout(validateYouTubeUrl, 0);
-});
-  validateYouTubeUrl();
 })
 
 document.querySelector("#paste-text-modal button").addEventListener("click", () => {
   closeModal()
-  
   const textType = document.querySelector("#paste-text-modal button").getAttribute("text-type")
   const text = document.querySelector("textarea").value
   if (textType == "text" && text) {
@@ -274,12 +288,13 @@ document.querySelector("#paste-text-modal button").addEventListener("click", () 
     document.querySelector("#paste-text-modal").style.display = "none"
   }
   else if (textType == "youtube" && text) {
-    if(window.location.hostname == "localhost" || "127.0.0.1"){
+    let hostname = window.location.hostname
+    if (hostname != "localhost" && hostname != "127.0.0.1") {
       showError("This functionality is currently disabled in production. Reloading soon")
       //setTimeout(()=>window.location.reload(),3000)
       return window.location.reload()
     }
-    if(!/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i.test(text)){
+    if (!/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i.test(text)) {
       document.querySelector("#paste-text-modal").style.display = "none"
       return showError("Invalid YouTube URL. Try again!")
     }
@@ -302,8 +317,8 @@ document.querySelector("#paste-text-modal button").addEventListener("click", () 
       .then((response) => response.json())
       .then((result) => {
         const existingSources = JSON.parse(localStorage.getItem("sources")) || []
-        const transcript=result?.transcript
-        existingSources.push({ type: "youtube", text:transcript })
+        const transcript = result?.transcript
+        existingSources.push({ type: "youtube", text: transcript })
         localStorage.setItem("sources", JSON.stringify(existingSources))
         hideLoader()
         renderSources()
@@ -328,25 +343,25 @@ function showError(message = 'Error: Something went wrong!') {
   // Update message and show
   container.querySelector('.error-message').textContent = `⚠️ ${message}`;
   container.style.display = 'block';
-  
+
   // Trigger countdown bar animation
   setTimeout(() => {
-      document.querySelector('.countdown-bar').style.transform = 'scaleX(0)';
+    document.querySelector('.countdown-bar').style.transform = 'scaleX(0)';
   }, 10);
 
   // Update countdown text
   countdownText.textContent = seconds;
   window.countdownInterval = setInterval(() => {
-      seconds--;
-      countdownText.textContent = seconds;
+    seconds--;
+    countdownText.textContent = seconds;
   }, 1000);
 
   // Hide after 5 seconds
   window.errorTimeout = setTimeout(() => {
-      container.style.display = 'none';
-      clearInterval(window.countdownInterval);
-      countdownText.textContent = '5';
-      document.querySelector('.countdown-bar').style.transform = 'scaleX(1)';
+    container.style.display = 'none';
+    clearInterval(window.countdownInterval);
+    countdownText.textContent = '5';
+    document.querySelector('.countdown-bar').style.transform = 'scaleX(1)';
   }, 5000);
 }
 const youtubeInput = document.getElementById('youtubeInput');
@@ -354,26 +369,23 @@ const validationStatus = document.getElementById('validationStatus');
 const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
 
 function validateYouTubeUrl() {
-    const input = youtubeInput.value.trim();
-    const isValid = youtubeRegex.test(input);
-    
-    youtubeInput.classList.toggle('invalid', !isValid);
-    
-    if (input === '') {
-        validationStatus.textContent = '';
-        youtubeInput.classList.remove('invalid');
-    } else {
-        validationStatus.textContent = isValid 
-            ? '✓ Valid YouTube URL' 
-            : '⚠ Invalid YouTube URL';
-        validationStatus.style.color = isValid ? '#4CAF50' : '#ff4444';
-    }
+  const input = youtubeInput.value.trim();
+  const isValid = youtubeRegex.test(input);
+
+  youtubeInput.classList.toggle('invalid', !isValid);
+
+  if (input === '') {
+    validationStatus.textContent = '';
+    youtubeInput.classList.remove('invalid');
+  } else {
+    validationStatus.textContent = isValid
+      ? '✓ Valid YouTube URL'
+      : '⚠ Invalid YouTube URL';
+    validationStatus.style.color = isValid ? '#4CAF50' : '#ff4444';
+  }
 }
 
-// Validate on input and paste events
-// youtubeInput.addEventListener('input', validateYouTubeUrl);
-// youtubeInput.addEventListener('paste', function(e) {
-//     setTimeout(validateYouTubeUrl, 0);
-// });
-
-// Initial validation
+document.querySelector(".reset").addEventListener("click", () => {
+  localStorage.clear()
+  document.location.reload()
+})

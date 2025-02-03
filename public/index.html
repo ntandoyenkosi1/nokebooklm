@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="This app is a more customisable version of NotebookLM written entirely JavaScript">
-    <link rel="shortcut icon" href="assets/images/icon.svg"image/x-icon">
-    <title>NokebookLM</title>
+    <meta name="description"
+        content="This app is a more customisable version of NotebookLM written entirely JavaScript.">
+    <link rel="shortcut icon" href="assets/images/icon.svg" type="iimage/x-icon">
+    <title>NotbookLM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
@@ -24,7 +25,7 @@
                 </div>
                 <div>
                     <div><button>Share</button></div>
-                    <div><button>Settings</button></div>
+                    <div><button class="reset">Reset</button></div>
                 </div>
             </div>
 
@@ -54,83 +55,86 @@
                         <div id="source-number">1 Source(s)</div>
                     </i></b>
                 <div id="summary">No summary yet</div>
-
                 <div>
-                    <a href="" id="advanced-options">Show advanced options<img alt="icon" src="assets/images/caret-down.svg"></a>
+                    <a href="" id="advanced-options">Show advanced options<img alt="icon"
+                            src="assets/images/caret-down.svg"></a>
                 </div>
                 <div class="voice-column">
                     <div class="voices">
                         <h3>Host 1</h3>
                         <input class="grey-input" value="Liam" type="text" id="speaker1-name">
                         <select class="grey-select" id="speaker1-voice">
-                            <option value="en-GB-News-L">en-GB-News-L</option>
-                            <option value="en-US-Journey-O">en-US-Journey-O</option>
-                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
-                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
-                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
-                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
-                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
-                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
-                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
-                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
-                            <option value="en-US-Standard-B">en-US-Standard-B</option>
-                            <option value="en-US-Standard-C">en-US-Standard-C</option>
-                            <option value="en-US-Standard-D">en-US-Standard-D</option>
-                            <option value="en-US-Standard-E">en-US-Standard-E</option>
-                            <option value="en-US-Standard-F">en-US-Standard-F</option>
-                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
-                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
-                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
-                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
-                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
-                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
-                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
-                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
-                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
-                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
-                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
-                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
-                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
-                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
-                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
-                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                            <option value="en-GB-News-L">Male US voice</option>
+                            <option value="en-GB-News-L">Female UK voice 1</option>
+                            <option value="en-US-Journey-O">Male US voice 1</option>
+                            <option value="en-US-Wavenet-A">Female US voice 2</option>
+                            <option value="en-US-Wavenet-B">Male US voice 2</option>
+                            <option value="en-US-Wavenet-C">Female US voice 3</option>
+                            <option value="en-US-Wavenet-D">Male US voice 3</option>
+                            <option value="en-US-Wavenet-E">Female US voice 4</option>
+                            <option value="en-US-Wavenet-F">Male US voice 4</option>
+                            <option value="en-US-Wavenet-G">Male US voice 5</option>
+                            <option value="en-US-Wavenet-H">Female US voice 5</option>
+                            <option value="en-US-Standard-B">Male US voice 6</option>
+                            <option value="en-US-Standard-C">Female US voice 6</option>
+                            <option value="en-US-Standard-D">Male US voice 7</option>
+                            <option value="en-US-Standard-E">Female US voice 7</option>
+                            <option value="en-US-Standard-F">Male US voice 8</option>
+                            <option value="en-GB-Wavenet-A">Female UK voice 2</option>
+                            <option value="en-GB-Wavenet-B">Male UK voice 2</option>
+                            <option value="en-GB-Wavenet-C">Female UK voice 3</option>
+                            <option value="en-GB-Wavenet-D">Male UK voice 3</option>
+                            <option value="en-GB-Standard-A">Female UK voice 4</option>
+                            <option value="en-GB-Standard-B">Male UK voice 4</option>
+                            <option value="en-GB-Standard-C">Female UK voice 5</option>
+                            <option value="en-GB-Standard-D">Male UK voice 5</option>
+                            <option value="en-AU-Wavenet-A">Female AU voice 1</option>
+                            <option value="en-AU-Wavenet-B">Male AU voice 1</option>
+                            <option value="en-AU-Wavenet-C">Female AU voice 2</option>
+                            <option value="en-AU-Wavenet-D">Male AU voice 2</option>
+                            <option value="en-AU-Standard-A">Female AU voice 3</option>
+                            <option value="en-AU-Standard-B">Male AU voice 3</option>
+                            <option value="en-AU-Standard-C">Female AU voice 4</option>
+                            <option value="en-AU-Standard-D">Male AU voice 4</option>
                         </select>
                     </div>
                     <div class="voices">
                         <h3>Host 2</h3>
                         <input type="text" class="grey-input" value="Ethan" id="speaker2-name">
                         <select class="grey-select" id="speaker2-voice">
-                            <option value="en-GB-Journey-D">en-GB-Journey-D</option>
-                            <option value="en-US-Journey-O">en-US-Journey-O</option>
-                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
-                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
-                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
-                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
-                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
-                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
-                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
-                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
-                            <option value="en-US-Standard-B">en-US-Standard-B</option>
-                            <option value="en-US-Standard-C">en-US-Standard-C</option>
-                            <option value="en-US-Standard-D">en-US-Standard-D</option>
-                            <option value="en-US-Standard-E">en-US-Standard-E</option>
-                            <option value="en-US-Standard-F">en-US-Standard-F</option>
-                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
-                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
-                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
-                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
-                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
-                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
-                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
-                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
-                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
-                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
-                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
-                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
-                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
-                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
-                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
-                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                            <option value="en-GB-Journey-D">Male US voice</option>
+                            <option value="en-GB-News-L">Female UK voice 1</option>
+                            <option value="en-US-Journey-O">Male US voice 1</option>
+                            <option value="en-US-Wavenet-A">Female US voice 2</option>
+                            <option value="en-US-Wavenet-B">Male US voice 2</option>
+                            <option value="en-US-Wavenet-C">Female US voice 3</option>
+                            <option value="en-US-Wavenet-D">Male US voice 3</option>
+                            <option value="en-US-Wavenet-E">Female US voice 4</option>
+                            <option value="en-US-Wavenet-F">Male US voice 4</option>
+                            <option value="en-US-Wavenet-G">Male US voice 5</option>
+                            <option value="en-US-Wavenet-H">Female US voice 5</option>
+                            <option value="en-US-Standard-B">Male US voice 6</option>
+                            <option value="en-US-Standard-C">Female US voice 6</option>
+                            <option value="en-US-Standard-D">Male US voice 7</option>
+                            <option value="en-US-Standard-E">Female US voice 7</option>
+                            <option value="en-US-Standard-F">Male US voice 8</option>
+                            <option value="en-GB-Wavenet-A">Female UK voice 2</option>
+                            <option value="en-GB-Wavenet-B">Male UK voice 2</option>
+                            <option value="en-GB-Wavenet-C">Female UK voice 3</option>
+                            <option value="en-GB-Wavenet-D">Male UK voice 3</option>
+                            <option value="en-GB-Standard-A">Female UK voice 4</option>
+                            <option value="en-GB-Standard-B">Male UK voice 4</option>
+                            <option value="en-GB-Standard-C">Female UK voice 5</option>
+                            <option value="en-GB-Standard-D">Male UK voice 5</option>
+                            <option value="en-AU-Wavenet-A">Female AU voice 1</option>
+                            <option value="en-AU-Wavenet-B">Male AU voice 1</option>
+                            <option value="en-AU-Wavenet-C">Female AU voice 2</option>
+                            <option value="en-AU-Wavenet-D">Male AU voice 2</option>
+                            <option value="en-AU-Standard-A">Female AU voice 3</option>
+                            <option value="en-AU-Standard-B">Male AU voice 3</option>
+                            <option value="en-AU-Standard-C">Female AU voice 4</option>
+                            <option value="en-AU-Standard-D">Male AU voice 4</option>
+
                         </select>
                     </div>
                     <div class="voices">
@@ -138,48 +142,46 @@
                         <input class="grey-input" value="Everly" type="text" id="speaker3-name">
                         <select class="grey-select" id="speaker3-voice">
 
-                            <option value="en-US-Journey-O">en-US-Journey-O</option>
-                            <option value="en-GB-Journey-D">en-GB-Journey-D</option>
-                            <option value="en-US-Wavenet-A">en-US-Wavenet-A</option>
-                            <option value="en-US-Wavenet-B">en-US-Wavenet-B</option>
-                            <option value="en-US-Wavenet-C">en-US-Wavenet-C</option>
-                            <option value="en-US-Wavenet-D">en-US-Wavenet-D</option>
-                            <option value="en-US-Wavenet-E">en-US-Wavenet-E</option>
-                            <option value="en-US-Wavenet-F">en-US-Wavenet-F</option>
-                            <option value="en-US-Wavenet-G">en-US-Wavenet-G</option>
-                            <option value="en-US-Wavenet-H">en-US-Wavenet-H</option>
-                            <option value="en-US-Standard-B">en-US-Standard-B</option>
-                            <option value="en-US-Standard-C">en-US-Standard-C</option>
-                            <option value="en-US-Standard-D">en-US-Standard-D</option>
-                            <option value="en-US-Standard-E">en-US-Standard-E</option>
-                            <option value="en-US-Standard-F">en-US-Standard-F</option>
-                            <option value="en-GB-Wavenet-A">en-GB-Wavenet-A</option>
-                            <option value="en-GB-Wavenet-B">en-GB-Wavenet-B</option>
-                            <option value="en-GB-Wavenet-C">en-GB-Wavenet-C</option>
-                            <option value="en-GB-Wavenet-D">en-GB-Wavenet-D</option>
-                            <option value="en-GB-Standard-A">en-GB-Standard-A</option>
-                            <option value="en-GB-Standard-B">en-GB-Standard-B</option>
-                            <option value="en-GB-Standard-C">en-GB-Standard-C</option>
-                            <option value="en-GB-Standard-D">en-GB-Standard-D</option>
-                            <option value="en-AU-Wavenet-A">en-AU-Wavenet-A</option>
-                            <option value="en-AU-Wavenet-B">en-AU-Wavenet-B</option>
-                            <option value="en-AU-Wavenet-C">en-AU-Wavenet-C</option>
-                            <option value="en-AU-Wavenet-D">en-AU-Wavenet-D</option>
-                            <option value="en-AU-Standard-A">en-AU-Standard-A</option>
-                            <option value="en-AU-Standard-B">en-AU-Standard-B</option>
-                            <option value="en-AU-Standard-C">en-AU-Standard-C</option>
-                            <option value="en-AU-Standard-D">en-AU-Standard-D</option>
+                            <option value="en-US-Journey-O">Female US voice 1</option>
+                            <option value="en-GB-Journey-D">Male US voice</option>
+                            <option value="en-GB-News-L">Female UK voice 1</option>
+                            <option value="en-US-Journey-O">Male US voice 1</option>
+                            <option value="en-US-Wavenet-A">Female US voice 2</option>
+                            <option value="en-US-Wavenet-B">Male US voice 2</option>
+                            <option value="en-US-Wavenet-C">Female US voice 3</option>
+                            <option value="en-US-Wavenet-D">Male US voice 3</option>
+                            <option value="en-US-Wavenet-E">Female US voice 4</option>
+                            <option value="en-US-Wavenet-F">Male US voice 4</option>
+                            <option value="en-US-Wavenet-G">Male US voice 5</option>
+                            <option value="en-US-Wavenet-H">Female US voice 5</option>
+                            <option value="en-US-Standard-B">Male US voice 6</option>
+                            <option value="en-US-Standard-C">Female US voice 6</option>
+                            <option value="en-US-Standard-D">Male US voice 7</option>
+                            <option value="en-US-Standard-E">Female US voice 7</option>
+                            <option value="en-US-Standard-F">Male US voice 8</option>
+                            <option value="en-GB-Wavenet-A">Female UK voice 2</option>
+                            <option value="en-GB-Wavenet-B">Male UK voice 2</option>
+                            <option value="en-GB-Wavenet-C">Female UK voice 3</option>
+                            <option value="en-GB-Wavenet-D">Male UK voice 3</option>
+                            <option value="en-GB-Standard-A">Female UK voice 4</option>
+                            <option value="en-GB-Standard-B">Male UK voice 4</option>
+                            <option value="en-GB-Standard-C">Female UK voice 5</option>
+                            <option value="en-GB-Standard-D">Male UK voice 5</option>
+                            <option value="en-AU-Wavenet-A">Female AU voice 1</option>
+                            <option value="en-AU-Wavenet-B">Male AU voice 1</option>
+                            <option value="en-AU-Wavenet-C">Female AU voice 2</option>
+                            <option value="en-AU-Wavenet-D">Male AU voice 2</option>
+                            <option value="en-AU-Standard-A">Female AU voice 3</option>
+                            <option value="en-AU-Standard-B">Male AU voice 3</option>
+                            <option value="en-AU-Standard-C">Female AU voice 4</option>
+                            <option value="en-AU-Standard-D">Male AU voice 4</option>
                         </select>
                     </div>
                 </div>
                 <div style="display: flex;">
-                    <!-- <button disabled><img style="color: yellow;" src="assets/images/journal-text.svg"> Add note</button> -->
-                    <button title="Generate podcast" id="generate-btn"><img style="color: yellow;" alt="Star logo" src="assets/images/stars.svg"> Generate audio
-                        podcast</button>
-                    <!-- <button disabled><img style="color: yellow;" src="assets/images/mortarboard-fill.svg"> Briefing
-                        doc</button> -->
+                    <button title="Generate podcast" id="generate-btn"><img style="color: yellow;" alt="Star logo"
+                            src="assets/images/stars.svg"> Generate audio podcast</button>
                 </div>
-                <!-- // 1st, 2nd, 3rd, 4th, -->
             </div>
             <div class="column">
 
@@ -195,7 +197,7 @@
 
                 </div>
                 <div class="audio-player">
-                    Play audio
+                   
                     <audio controls></audio>
                 </div>
 
@@ -206,14 +208,14 @@
         <div>
             <div>
                 <img alt="icon" src="assets/images/icon.svg" alt="">
-                <h3>NotebookLM</h3>
+                <h3>NotbookLM</h3>
             </div>
         </div>
         <div>
             <h2>Add sources</h2>
         </div>
         <div>
-            <h4>Sources let NotebookLM base its responses on the information that matters most to you.
+            <h4>Sources let NotbookLM base its responses on the information that matters most to you.
                 (Examples: marketing plans, course reading, research notes, meeting transcripts, sales documents, etc.)
             </h4>
         </div>
@@ -222,7 +224,7 @@
             <h3>
                 Upload sources</h3>
             Drag & drop or <input id="file-input" accept=".pdf,.txt,.md" type="file"> file to upload
-            <p>Supported file types: PDF, .txt, Markdown, Audio (e.g. mp3)</p>
+            <p>Supported file types: PDF, .txt and Markdown</p>
         </div>
         <div class="links">
             <div>
@@ -231,7 +233,8 @@
             </div>
             <div>
                 <p>Pasted Text</p>
-                <button id="pasted-text"><img  src="assets/images/clipboard.svg" alt="icon" srcset="">Copied Text</button>
+                <button id="pasted-text"><img src="assets/images/clipboard.svg" alt="icon" srcset="">Copied
+                    Text</button>
             </div>
         </div>
         <div><button class="x">Close</button></div>
@@ -256,7 +259,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-
+    
     <script type="module" src="assets/js/index.js"></script>
 </body>
 
