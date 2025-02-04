@@ -3,7 +3,7 @@ let sources = JSON.parse(localStorage.getItem("sources")) || []
 let title = localStorage.getItem("title") == "undefined" ? "Tech Talk" : localStorage.getItem("title") || "Tech Talk"
 document.querySelector("#summary").innerText = localStorage.getItem("summary") == "undefined" ? "No summary yet" : localStorage.getItem("summary") || "No summary yet"
 
-document.querySelector("#perfect-title").innerText = localStorage.getItem("perfect-title") ? "No title yet" : localStorage.getItem("perfect-title") || "No title yet"
+document.querySelector("#perfect-title").innerText = localStorage.getItem("perfect-title") ? localStorage.getItem("perfect-title") : "No title yet"
 document.querySelector("#title").value = title
 localStorage.setItem("title", title)
 document.querySelector("#title").addEventListener("input", (e) => {
